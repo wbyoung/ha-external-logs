@@ -1,0 +1,23 @@
+#!/usr/bin/with-contenv bashio
+# vim: ft=bash
+# shellcheck shell=bash
+
+DIRECTORY="$(bashio::config 'directory')"
+LOG_PATH="$DIRECTORY/home-assistant.log"
+
+if ! [ -d "$DIRECTORY" ]; then
+  bashio::log.error "no mount available at:"
+  bashio::log.error "    $DIRECTORY"
+  bashio::log.error "exiting; restart when mount path is available"
+  exit 1
+fi
+
+bashio::log.info "copying logs to $LOG_PATH"
+journalctl \
+  --follow \
+  --directory "/var/log/journal" \
+  --output=cat \
+  --cursor-file "$LOG_PATH.cursor" \
+  CONTAINER_NAME=homeassistant \
+  >> "$LOG_PATH"
+

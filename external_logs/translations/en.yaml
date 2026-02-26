@@ -1,0 +1,4 @@
+configuration:
+  directory:
+    name: Directory
+    description: The directory in which the `home-assistant.log` file will be written.
