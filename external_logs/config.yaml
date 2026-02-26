@@ -6,6 +6,7 @@ arch:
   - amd64
   - aarch64
 init: false
+image: "ghcr.io/wbyoung/{arch}-external_logs"
 journald: true
 options:
   directory: null
