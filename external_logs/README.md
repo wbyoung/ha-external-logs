@@ -1,4 +1,4 @@
-# External Logs Add-on
+# External Logs App
 
 _Store logs on external storage._
 
