@@ -1,0 +1,21 @@
+#!/command/with-contenv bashio
+# vim: ft=bash
+# shellcheck shell=bash
+# ==============================================================================
+# Rotate external-logs
+# ==============================================================================
+
+DIRECTORY="$(bashio::config 'directory')"
+LOG_PATH="$DIRECTORY/home-assistant.log"
+
+cat > /etc/logrotate.conf <<EOF
+"${LOG_PATH}" {
+    rotate 2
+    weekly
+    postrotate
+        s6-svc -r /run/service/external-logs
+    endscript
+}
+EOF
+
+logrotate --state /data/logrotate_status /etc/logrotate.conf

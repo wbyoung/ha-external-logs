@@ -2,3 +2,6 @@ configuration:
   directory:
     name: Directory
     description: The directory in which the `home-assistant.log` file will be written.
+  wait_time:
+    name: Wait time
+    description: The amount of time to wait for the directory to be created if it does not initially exist.
