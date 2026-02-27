@@ -12,10 +12,12 @@ on:
 
 permissions:
   actions: read
-  contents: read
+  contents: write
+  pull-requests: read
   packages: read
   security-events: write
 
 jobs:
   workflows:
+    name: App
     uses: wbyoung/ha-apps/.github/workflows/app-ci.yaml@main
