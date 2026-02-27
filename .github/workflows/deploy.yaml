@@ -1,0 +1,29 @@
+---
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+  workflow_dispatch: # TODO: remove
+
+permissions:
+  actions: read
+  contents: read
+  packages: write
+  security-events: write
+
+jobs:
+  ci:
+    name: App
+    uses: wbyoung/ha-apps/.github/workflows/app-ci.yaml@main
+
+  deploy:
+    needs: ci
+    name: Deploy
+    uses: wbyoung/ha-apps/.github/workflows/app-deploy.yaml@main
+    secrets:
+      DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
