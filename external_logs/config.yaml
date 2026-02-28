@@ -13,6 +13,7 @@ options:
   directory: null
 schema:
   directory: str
+  wait_time: int?
 map:
   - type: share
     read_only: false

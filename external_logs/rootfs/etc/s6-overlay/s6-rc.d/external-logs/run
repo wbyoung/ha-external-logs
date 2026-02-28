@@ -1,23 +1,38 @@
 #!/usr/bin/with-contenv bashio
 # vim: ft=bash
 # shellcheck shell=bash
+# ==============================================================================
+# Start external-logs service
+# ==============================================================================
 
 DIRECTORY="$(bashio::config 'directory')"
 LOG_PATH="$DIRECTORY/home-assistant.log"
 
+bashio::config.has_value 'wait_time' \
+    && WAIT_TIME="$(bashio::config 'wait_time')" || WAIT_TIME=60
+
 if ! [ -d "$DIRECTORY" ]; then
-  bashio::log.error "no mount available at:"
-  bashio::log.error "    $DIRECTORY"
-  bashio::log.error "exiting; restart when mount path is available"
-  exit 1
+  bashio::log.error "No directory available at: ${DIRECTORY}"
+  bashio::log.warning "Waiting up to $WAIT_TIME seconds for directory to be created"
+
+  start_time=$SECONDS
+  end_time=$((start_time + $WAIT_TIME))
+
+  while ! [ -d "$DIRECTORY" ] && [ $SECONDS -lt $end_time ]; do
+    sleep 1
+  done
+
+  if ! [ -d "$DIRECTORY" ]; then
+    bashio::log.error "Exiting; directory not available"
+    exit 1
+  fi
 fi
 
-bashio::log.info "copying logs to $LOG_PATH"
-journalctl \
+bashio::log.info "Copying logs to: $LOG_PATH"
+exec journalctl \
   --follow \
   --directory "/var/log/journal" \
   --output=cat \
   --cursor-file "$LOG_PATH.cursor" \
   CONTAINER_NAME=homeassistant \
   >> "$LOG_PATH"
-
