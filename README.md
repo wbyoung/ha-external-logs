@@ -6,7 +6,7 @@
 ![Supports armhf Architecture][armhf-shield]
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
-![Build](https://img.shields.io/github/actions/workflow/status/wbyoung/ha-external-logs/builder.yaml)
+![Build][build-shield]
 [![Github Sponsors][gh-sponsors-shield]][gh-sponsors]
 
 This allows a `home-assistant.log` file to be written to any directory. The app
@@ -31,5 +31,6 @@ directory: /share/my_nas
 [i386-shield]: https://img.shields.io/badge/i386-no-red.svg
 [supervisor-add-badge]: https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg
 [supervisor-add-link]: https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fwbyoung%2Fha-apps
+[build-shield]: https://img.shields.io/github/actions/workflow/status/wbyoung/ha-external-logs/ci.yaml
 [gh-sponsors-shield]: https://img.shields.io/badge/GitHub%20Sponsors-grey?&logo=GitHub-Sponsors&logoColor=EA4AAA
 [gh-sponsors]: https://github.com/sponsors/wbyoung
