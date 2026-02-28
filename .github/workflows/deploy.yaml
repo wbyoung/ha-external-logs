@@ -8,11 +8,11 @@ on:
   release:
     types:
       - published
-  workflow_dispatch: # TODO: remove
 
 permissions:
   actions: read
-  contents: read
+  contents: write
+  pull-requests: read
   packages: write
   security-events: write
 
@@ -25,5 +25,9 @@ jobs:
     needs: ci
     name: Deploy
     uses: wbyoung/ha-apps/.github/workflows/app-deploy.yaml@main
+    with:
+      repository: ha-apps
+      repository_beta: ha-apps-beta
+      repository_edge: ha-apps-edge
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}

@@ -1,13 +1,13 @@
 name: "External Logs"
 description: "Write logs to external storage"
-version: "1.0.0"
 url: "https://github.com/wbyoung/ha-external-logs"
+version: "dev"
 slug: "external_logs"
 arch:
   - amd64
   - aarch64
 init: false
-image: "ghcr.io/wbyoung/{arch}-external_logs"
+image: "ghcr.io/wbyoung/external_logs/{arch}"
 journald: true
 options:
   directory: null
