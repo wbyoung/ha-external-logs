@@ -1,8 +1,8 @@
-name: "External Logs"
-description: "Write logs to external storage"
-url: "https://github.com/wbyoung/ha-external-logs"
-version: "dev"
-slug: "external_logs"
+name: External Logs
+description: Write logs to external storage
+url: https://github.com/wbyoung/ha-external-logs
+version: dev
+slug: external_logs
 arch:
   - amd64
   - aarch64
