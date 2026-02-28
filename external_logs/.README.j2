@@ -34,7 +34,7 @@ directory: /share/my_nas
 
 [![Add app repository to Home Assistant.][supervisor-add-badge]][supervisor-add-link]
 
-[version-shield]: https://img.shields.io/badge/version-{{ version }}-blue.svg
+[version-shield]: https://img.shields.io/badge/version-{{ version|replace('-', '--') }}-blue.svg
 [releases]: https://github.com/wbyoung/ha-external-logs/releases
 [issue]: {{ repo }}/issues
 {% for arch in ['aarch64', 'amd64', 'armhf', 'armv7', 'i386'] %}
